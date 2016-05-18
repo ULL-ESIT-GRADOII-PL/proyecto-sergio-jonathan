@@ -1,0 +1,222 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata|Raleway:400,700);
+body {
+  background: #232526;
+  background: -webkit-linear-gradient(right, #232526, #414345);
+  background: linear-gradient(to left, #232526, #414345);
+  color: white;
+  font-family: Raleway, sans-serif;
+}
+
+header {
+  background: url("../images/header.jpg") no-repeat center;
+  text-align: left;
+  width: 100%;
+  height: 85px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  padding-right: 5%;
+}
+
+header a:hover {
+  color: black;
+}
+
+#menu {
+  margin-left: 2%;
+}
+
+#menu > h1 {
+  display: inline-block;
+}
+
+nav {
+  display: inline-block;
+}
+
+#menu > nav {
+  width: 380px;
+}
+
+nav > ul {
+  list-style-type: none;
+  display: inline;
+}
+
+nav > ul > li {
+  list-style-type: none;
+  display: inline;
+}
+
+.separador {
+  height: 50px;
+}
+
+.separadormini {
+  height: 20px;
+}
+
+.pagina {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+.pagina a {
+  color: white;
+}
+
+.pagina textarea {
+  color: #676767;
+}
+
+.pagina .hidden {
+  display: none;
+}
+
+.pagina button {
+  color: black;
+  background-color: #dddddd;
+  border: 1px solid black;
+  padding: 5px 10px 5px 10px;
+}
+
+.pagina button:active {
+  background-color: #9f9f9f;
+}
+
+.pagina .inputfile {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  padding: 5px 10px 5px 10px;
+  width: 160px;
+  height: 20px;
+}
+
+.pagina .inputfile + label {
+  color: black;
+  background-color: #dddddd;
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid black;
+  width: 160px;
+  height: 20px;
+}
+
+.pagina .inputfile + label:active {
+  background-color: #9f9f9f;
+}
+
+.pagina .inputfile + label:hover {
+  cursor: pointer;
+}
+
+.pagina input {
+  color: black;
+}
+
+.pagina form {
+  z-index: 99;
+}
+
+.pagina #original {
+  width: 600px;
+  height: 200px;
+}
+
+.pagina .output {
+  text-align: left;
+  width: 600px;
+  height: 600px;
+  font-family: Inconsolata, sans-serif;
+  resize: none;
+}
+
+table, th, td {
+  border: 1px solid white;
+}
+
+.prefooter {
+  height: 143px;
+}
+
+footer {
+  width: 100%;
+  text-align: left;
+  text-indent: 2%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+footer:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("../images/header.jpg") no-repeat bottom;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+footer ul {
+  list-style-type: none;
+  width: 200px;
+}
+
+footer a {
+  color: white;
+  font-style: italic;
+}
+
+footer a:hover {
+  color: #c8cdcd;
+}
+
+footer #listamenu {
+  float: left;
+  display: inline-block;
+}
+
+footer #listaderecha {
+  float: right;
+  display: inline-block;
+  padding-right: 2%;
+}
+
+@media screen and (max-width: 860px) {
+  #menu h1 {
+    font-size: x-large;
+  }
+  #original {
+    width: 450px;
+  }
+  #final {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  header li {
+    font-size: small;
+  }
+  #menu h1 {
+    font-size: large;
+  }
+  #original {
+    width: 250px;
+  }
+  #final {
+    width: 250px;
+  }
+  footer {
+    display: none;
+  }
+}

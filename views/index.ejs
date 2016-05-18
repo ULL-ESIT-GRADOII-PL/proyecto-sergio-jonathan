@@ -1,0 +1,48 @@
+<header>
+    <div id=menu>
+        <h1>Analizador PL0</h1>
+        <nav>
+            <ul>
+                <li><a href="http://alu0100699968.github.io/" target="_blank"><i class="fa fa-user"></i> Sergio Rodríguez</a></li>
+                <li><a href="http://alu0100696455.github.io/" target="_blank"><i class="fa fa-user"></i> Jonathan Expósito</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="separador"></div>
+<div class=pagina>
+    <p>Escriba un script en lenguaje PL/0 y pulse el botón para generar el árbol de análisis sintáctico.</p>
+    <div class="separador"></div>
+    <div class="example">
+        Click para cargar ejemplos:
+        <button class="example hidden" type="button"></button>
+        <button class="example hidden" type="button"></button>
+        <button class="example hidden" type="button"></button>
+        <button class="example hidden" type="button"></button>
+    </div>
+    <div class="separadormini"></div>
+    <input type="file" class="inputfile" />
+    <label for="file">Seleccione un fichero</label>
+    <div class="separadormini"></div>
+    <textarea autofocus class="drop_zone" id="original"></textarea>
+    <div class="separadormini"></div>
+    <form>
+        <input id="titulo" type="text" pattern="^[a-zA-Z_]\w*\.pl0$">
+        <input id="guardar" type="submit">
+    </form>
+    <div class="separadormini"></div>
+    <button type="button" id="parse">Generar Tabla</button>
+    <div class="separador"></div>
+    <textarea readonly class="output hidden" id="final"></textarea>
+</div>
+<div class="prefooter"></div>
+<footer>
+    <ul id=listamenu>
+        <li><a href="tests/" target="_blank">Tests del proyecto</a></li>
+        <li><a href="https://github.com/ULL-ESIT-GRADOII-PL/proyecto-sergio-jonathan" target="_blank">Repositorio de la práctica</a></li>
+    </ul>
+    <ul id=listaderecha>
+        <li><a href="https://github.com/alu0100699968" target="_blank">GitHub Sergio Rodríguez</a></li>
+        <li><a href="https://github.com/alu0100696455" target="_blank">GitHub Jonathan Expósito</a></li>
+    </ul>
+</footer>
