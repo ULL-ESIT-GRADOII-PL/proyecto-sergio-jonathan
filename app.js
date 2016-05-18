@@ -6,6 +6,7 @@ const path = require('path');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const PEG = require('./models/pl0node.js');
+const semantic = require('./models/semantic.js');
 //Se inicia la conexión a la BD
 mongoose.connect('mongodb://localhost/pl0');
 
@@ -26,8 +27,10 @@ app.get('/', (request, response) => {
 });
 
 app.get('/pl0', (request, response) => {
+    var tree = PEG.parse(request.query.input);
+    semantic(tree);
     response.send({
-        "rows": PEG.parse(request.query.input)
+        "tree": tree
     });
 });
 

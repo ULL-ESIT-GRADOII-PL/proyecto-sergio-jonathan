@@ -5,7 +5,7 @@
     /* Volcar la tabla con el resultado en el HTML */
     const fill = (data) => {
         $("#final").get(0).className = "output";
-        $("#final").html(JSON.stringify(data.rows, null, 3));
+        $("#final").html(JSON.stringify(data.tree, null, 3));
     };
 
     const handleFileSelect = (evt) => {
