@@ -10,8 +10,8 @@ desplegada en Cloud9 y tiene soporte de Karma, Gulp y Travis.
 
 * [Repositorio de la organización](https://github.com/ULL-ESIT-GRADOII-PL/proyecto-sergio-jonathan)
 * [Repositorio en el que trabajamos](https://github.com/ULL-ESIT-GRADOII-PL/proyecto-sergio-jonathan)
-* [Despliegue en Cloud9](https://ide.c9.io/alu0100696455/proyecto-sergio-jonathan/)
-* [Página en Cloud9](https://proyecto-sergio-jonathan-alu0100696455.c9users.io/)
+* [Despliegue en Cloud9](https://ide.c9.io/alu0100699968/proyecto-sergio-jonathan/)
+* [Página en Cloud9](https://proyecto-sergio-jonathan-alu0100699968.c9users.io/)
 
 ### Campus Virtual
 
