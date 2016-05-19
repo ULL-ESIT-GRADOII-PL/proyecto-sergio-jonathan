@@ -49,22 +49,17 @@ module.exports = (function() {
                     };
                   },
         peg$c2 = function(id, n, rest) {
-                                  let r = rest.map( ([_, id, __, nu]) => [id.value, nu.value] );
-                                  return [[id.value, n.value]].concat(r)
+                                  let r = rest.map( ([_, id, __, nu]) => new Constant(id.value, nu.value) );
+                                  return [new Constant(id.value, n.value)].concat(r)
                                 },
         peg$c3 = function(id, rest) {
-                              let r = rest.map( ([_, id]) => id.value );
-                              return [id.value].concat(r)
+                              let r = rest.map( ([_, id]) => new Variable(id.value));
+                              return [new Variable(id.value)].concat(r)
                             },
         peg$c4 = function(id, p1, r, b) {
                 let params = p1? [p1] : [];
                 params = params.concat(r.map(([_, p]) => p));
-                //delete b.type;
-                return Object.assign({
-                  type: 'FUNCTION',
-                  name: id,
-                  params: params,
-                }, b);
+                return Object.assign(new Function(id.value, params), b);
 
               },
         peg$c5 = function(s1, r) {
@@ -2070,6 +2065,11 @@ module.exports = (function() {
 
       return s0;
     }
+
+
+      var Variable = require('./symbol.js').Variable;
+      var Constant = require('./symbol.js').Constant;
+      var Function = require('./symbol.js').Function;
 
 
       var tree = function(f, r) {

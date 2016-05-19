@@ -5,33 +5,34 @@
     };
 
     var eachBlockPre = (tree, action, f) => {
-        //console.log("Father: " + f);
         action(tree, f);
         tree.functions.forEach((func) => eachBlockPre(func, action, tree.symbolTable));
     };
 
-    var makeTable = (block, f) => {
-        //console.log(block.name.value);
+    var makeTable = (block, fatherTable) => {
         block.symbolTable = {
-            father: f
+            father: fatherTable
         };
-        block.variables.forEach((variable) => addSymbol(variable, block.symbolTable));
-        block.constants.forEach((constant) => addSymbol(constant, block.symbolTable));
-        block.functions.forEach((func) => addSymbol(func.name.value, block.symbolTable));
+        block.variables.forEach((variable) => add(variable, block.symbolTable));
+        block.constants.forEach((constant) => add(constant, block.symbolTable));
+        block.functions.forEach((func) => add(func, block.symbolTable));
     };
 
-    var addSymbol = (sym, table) => {
-        //console.log("SYM: " + sym);
-        if (sym instanceof Array) {
-            if (table[sym[0]])
-                console.error("Error: " + sym[0] + " ya ha sido declarado.");
-            table[sym[0]] = sym[1];
-        } else {
-            if (table[sym])
-                console.error("Error: " + sym + " ya ha sido declarado.");
-            table[sym] = 'not defined';
-        }
+    var add = (sym, table) => {
+        if (checkRedecl(sym.name, table))
+            console.error("Error: " + sym + " ya ha sido declarado.");
+        table[sym.name] = sym.getSymbol();
     };
+
+    var checkRedecl = (sym, table) => {
+        var auxTable = table;
+        while (auxTable) {
+            if (auxTable[sym])
+                return true;
+            auxTable = auxTable.father;
+        }
+        return false;
+    }
 
     module.exports = semantic;
 })();
