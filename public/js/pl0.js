@@ -1,7 +1,17 @@
 // See http://en.wikipedia.org/wiki/Comma-separated_values
 (() => {
     "use strict"; // Use ECMAScript 5 strict mode in browsers that support it
-
+    
+    var editor;
+    
+    $(document).ready(() => {
+        editor = ace.edit("original");
+        editor.setTheme("ace/theme/sqlserver");
+        editor.getSession().setMode("ace/mode/javascript");
+        editor.setShowPrintMargin(false);
+        editor.session.setUseWorker(false);
+    })
+    
     /* Volcar la tabla con el resultado en el HTML */
     const fill = (data) => {
         $("#final").get(0).className = "output";
@@ -17,7 +27,7 @@
         var reader = new FileReader();
         reader.onload = (e) => {
 
-            $("#original").val(e.target.result);
+            editor.setValue(e.target.result, 1);
         };
         reader.readAsText(files[0])
     }
@@ -32,7 +42,7 @@
         var reader = new FileReader();
         reader.onload = (e) => {
 
-            $("#original").val(e.target.result);
+            editor.setValue(e.target.result, 1);
             evt.target.style.background = "white";
         };
         reader.readAsText(files[0])
@@ -47,14 +57,14 @@
     $(document).ready(() => {
         let original = document.getElementById("original");
         if (window.localStorage && localStorage.original) {
-            original.value = localStorage.original;
+            editor.setValue(localStorage.original, 1);
         }
 
         /* Request AJAX para que se calcule la tabla */
         $("#parse").click(() => {
-            if (window.localStorage) localStorage.original = original.value;
+            if (window.localStorage) localStorage.original = editor.getValue();
             $.get("/pl0", /* Request AJAX para que se calcule la tabla */ {
-                    input: original.value
+                    input: editor.getValue()
                 },
                 fill,
                 'json'
@@ -69,7 +79,7 @@
                         name: $(y).text()
                     },
                     (data) => {
-                        $("#original").val(data[0].content);
+                        editor.setValue(data[0].content, 1);
                     });
             });
         });
@@ -77,7 +87,7 @@
         /*Buscamos las entradas guardadas en la BD para mostrar los botones
           correspondientes con su nombre asociado*/
         $.get("/find", {}, (data) => {
-            for (var i = 0; i < 4; i++) {
+            for (var i = 0; i < 6; i++) {
                 if (data[i]) {
                     $('button.example').get(i).className = "example";
                     $('button.example').get(i).textContent = data[i].name;
@@ -88,9 +98,9 @@
         /*Guardamos una nueva entrada en la BD, con el nombre especificado
           por el usuario.*/
         $("#guardar").click(() => {
-            if (window.localStorage) localStorage.original = original.value;
+            if (window.localStorage) localStorage.original = editor.getValue();
             $.get("/mongo/" + $("#titulo").val(), {
-                content: $("#original").val()
+                content: editor.getValue()
             });
         });
 

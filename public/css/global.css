@@ -125,7 +125,9 @@ nav > ul > li {
 
 .pagina #original {
   width: 600px;
-  height: 200px;
+  height: 250px;
+  margin: auto;
+  text-align: left;
 }
 
 .pagina .output {
@@ -136,13 +138,16 @@ nav > ul > li {
   resize: none;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid white;
 }
 
 .prefooter {
   height: 143px;
 }
+
 
 footer {
   width: 100%;

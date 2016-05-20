@@ -10,8 +10,6 @@ const semantic = require('./models/semantic.js');
 //Se inicia la conexión a la BD
 mongoose.connect('mongodb://localhost/pl0');
 
-var testGlobal = 0;
-
 app.set('port', (process.env.PORT || 5000));
 
 app.set('views', path.join(__dirname, 'views'));
@@ -52,7 +50,7 @@ app.get('/mongo/:entrada', function(req, res) {
     Input.find({}, function(err, docs) {
         if (err)
             return err;
-        if (docs.length >= 4) {
+        if (docs.length >= 6) {
             Input.find({ name: docs[3].name }).remove().exec();
         }
     });
