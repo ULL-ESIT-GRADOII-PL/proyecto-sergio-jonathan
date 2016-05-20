@@ -42,27 +42,27 @@ block = cD:constantDeclaration? vD:varDeclaration? fD:functionDeclaration* st:st
 
 constantDeclaration = CONST id:ID ASSIGN n:NUMBER rest:(COMMA ID ASSIGN NUMBER)* SC
                         {
-                          let r = rest.map( ([_, id, __, nu]) => new Constant(id.value, nu.value) );
-                          return [new Constant(id.value, n.value)].concat(r)
+                          let r = rest.map( ([_, id, __, nu]) => new Constant(id.value, nu.value, location()) );
+                          return [new Constant(id.value, n.value, location())].concat(r)
                         }
 
 varDeclaration = VAR id:ID rest:(COMMA ID)* SC
                     {
-                      let r = rest.map( ([_, id]) => new Variable(id.value));
-                      return [new Variable(id.value)].concat(r)
+                      let r = rest.map( ([_, id]) => new Variable(id.value, location()));
+                      return [new Variable(id.value, location())].concat(r)
                     }
 
 functionDeclaration = FUNCTION id:ID LEFTPAR !COMMA p1:ID? r:(COMMA ID)* RIGHTPAR SC b:block SC
       {
         let params = p1? [p1] : [];
         params = params.concat(r.map(([_, p]) => p));
-        return Object.assign(new Function(id.value, params), b);
+        return Object.assign(new Function(id.value, params, location()), b);
 
       }
 
 
 st     = CL s1:st? r:(SC st)* SC* CR {
-               //console.log(location()) /* atributos start y end */
+               //console.log("LOCA: " + location().start.line) /* atributos start y end */
                let t = [];
                if (s1) t.push(s1);
                return {

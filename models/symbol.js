@@ -1,8 +1,9 @@
 "use strict";
 
 class Symbol {
-    constructor(name) {
+    constructor(name, location) {
         this.name = name;
+        this.location = location;
     }
 
     toString() {
@@ -11,8 +12,8 @@ class Symbol {
 }
 
 class Variable extends Symbol {
-    constructor(name) {
-        super(name);
+    constructor(name, location) {
+        super(name, location);
     }
 
     getSymbol() {
@@ -21,8 +22,8 @@ class Variable extends Symbol {
 }
 
 class Constant extends Symbol {
-    constructor(name, value) {
-        super(name);
+    constructor(name, value, location) {
+        super(name, location);
         this.value = value;
     }
 
@@ -35,10 +36,9 @@ class Constant extends Symbol {
 }
 
 class Function extends Symbol {
-    constructor(name, params, body) {
-        super(name);
+    constructor(name, params, location) {
+        super(name, location);
         this.params = params;
-        this.body = body;
     }
 
     getSymbol() {

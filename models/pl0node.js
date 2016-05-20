@@ -49,21 +49,21 @@ module.exports = (function() {
                     };
                   },
         peg$c2 = function(id, n, rest) {
-                                  let r = rest.map( ([_, id, __, nu]) => new Constant(id.value, nu.value) );
-                                  return [new Constant(id.value, n.value)].concat(r)
+                                  let r = rest.map( ([_, id, __, nu]) => new Constant(id.value, nu.value, location()) );
+                                  return [new Constant(id.value, n.value, location())].concat(r)
                                 },
         peg$c3 = function(id, rest) {
-                              let r = rest.map( ([_, id]) => new Variable(id.value));
-                              return [new Variable(id.value)].concat(r)
+                              let r = rest.map( ([_, id]) => new Variable(id.value, location()));
+                              return [new Variable(id.value, location())].concat(r)
                             },
         peg$c4 = function(id, p1, r, b) {
                 let params = p1? [p1] : [];
                 params = params.concat(r.map(([_, p]) => p));
-                return Object.assign(new Function(id.value, params), b);
+                return Object.assign(new Function(id.value, params, location()), b);
 
               },
         peg$c5 = function(s1, r) {
-                       //console.log(location()) /* atributos start y end */
+                       //console.log("LOCA: " + location().start.line) /* atributos start y end */
                        let t = [];
                        if (s1) t.push(s1);
                        return {

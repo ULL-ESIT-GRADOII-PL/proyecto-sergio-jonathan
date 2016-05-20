@@ -25,8 +25,16 @@ app.get('/', (request, response) => {
 });
 
 app.get('/pl0', (request, response) => {
-    var tree = PEG.parse(request.query.input);
-    semantic(tree);
+    var tree;
+    try {
+        tree = PEG.parse(request.query.input);
+        semantic(tree);
+        if (tree.errors)
+            tree = tree.errors;
+    } catch (e) {
+        console.log("ERROR: " + e);
+        tree = "Syntax Error: " + e.message.substring(0, e.message.length - 1) + " in line " + e.location.start.line;
+    }
     response.send({
         "tree": tree
     });
@@ -51,7 +59,9 @@ app.get('/mongo/:entrada', function(req, res) {
         if (err)
             return err;
         if (docs.length >= 6) {
-            Input.find({ name: docs[3].name }).remove().exec();
+            Input.find({
+                name: docs[3].name
+            }).remove().exec();
         }
     });
     let input = new Input({
