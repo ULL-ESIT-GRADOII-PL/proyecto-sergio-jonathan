@@ -26,7 +26,7 @@
 
         var add = (sym, table) => {
             if (checkDecl(sym.name, table, (sym.getSymbol() != "Variable"))) {
-                if (parseInt(sym.location.end.line) - parseInt(sym.location.start.line) == 1) {
+                if (parseInt(sym.location.end.line) - parseInt(sym.location.start.line) == 1 || parseInt(sym.location.end.line) - parseInt(sym.location.start.line) == 0) {
                     semanticErrors += "'" + sym + "' has already been declared in line " + sym.location.start.line + "&#13;&#10;";
                 }
                 else {

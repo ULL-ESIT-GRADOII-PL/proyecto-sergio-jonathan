@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/ULL-ESIT-GRADOII-PL/proyecto-sergio-jonathan",
   "devDependencies": {
+    "blanket": "^1.2.3",
     "chai": "*",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
@@ -42,7 +43,7 @@
     "karma-firefox-launcher": "^0.1.7",
     "karma-mocha": "^0.2.2",
     "karma-phantomjs-launcher": "^1.0.0",
-    "mocha": "*",
+    "mocha": "^2.4.5",
     "phantomjs-prebuilt": "^2.1.7"
   },
   "directories": {
