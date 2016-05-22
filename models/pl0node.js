@@ -102,7 +102,8 @@ module.exports = (function() {
                    return {
                      type: 'CALL',
                      func: f,
-                     arguments: t.concat(r.map(([_, exp]) => exp))
+                     arguments: t.concat(r.map(([_, exp]) => exp)),
+                     location: location()
                    }
                  },
         peg$c15 = function(t) { return t; },
@@ -165,7 +166,7 @@ module.exports = (function() {
         peg$c70 = /^[a-zA-Z_0-9]/,
         peg$c71 = { type: "class", value: "[a-zA-Z_0-9]", description: "[a-zA-Z_0-9]" },
         peg$c72 = function(id) {
-                      return { type: 'ID', value: id };
+                      return { type: 'ID', value: id, location: location() };
                     },
         peg$c73 = /^[0-9]/,
         peg$c74 = { type: "class", value: "[0-9]", description: "[0-9]" },

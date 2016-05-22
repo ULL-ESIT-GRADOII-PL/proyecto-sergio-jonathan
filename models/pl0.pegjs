@@ -113,7 +113,8 @@ factor = NUMBER
            return {
              type: 'CALL',
              func: f,
-             arguments: t.concat(r.map(([_, exp]) => exp))
+             arguments: t.concat(r.map(([_, exp]) => exp)),
+             location: location()
            }
          }
        / ID
@@ -144,7 +145,7 @@ CONST    = _ "const" _
 FUNCTION = _ "function" _
 ID       = _ id:$([a-zA-Z_][a-zA-Z_0-9]*) _
             {
-              return { type: 'ID', value: id };
+              return { type: 'ID', value: id, location: location() };
             }
 NUMBER   = _ digits:$[0-9]+ _
             {
